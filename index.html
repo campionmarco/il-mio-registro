@@ -110,7 +110,37 @@
 
     <!-- SCREEN AGENDA -->
     <div id="screen-agenda" class="screen">
-      <div class="header"><h1>Agenda</h1></div>
+      <div
+        class="header"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <h1>Agenda</h1>
+        <label
+          class="btn btn-primary"
+          style="
+            padding: 8px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin: 0;
+          "
+        >
+          📁 Importa CSV
+          <input
+            type="file"
+            id="csv-file-input"
+            accept=".csv"
+            style="display: none"
+            onchange="importAgendaCSV(event)"
+          />
+        </label>
+      </div>
       <div class="card">
         <div class="month-nav">
           <button onclick="changeMonth(-1)">&#8249;</button>
