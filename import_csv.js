@@ -15,7 +15,7 @@ function parseCSVLine(line) {
       } else {
         inQuotes = !inQuotes;
       }
-    } else if (char === ',' && !inQuotes) {
+    } else if ((char === ',' || char === ';') && !inQuotes) {
       result.push(current);
       current = '';
     } else {
@@ -41,11 +41,17 @@ function parseCSVData(csvText) {
       const notes = cols[4];        // es. "Homework: page 104-105..."
       const author = cols[5] || ''; // es. "PIERLORENZI GIULIA"
 
-      // Estrai la data in formato YYYY-MM-DD
-      const matchDate = startDateStr.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+      // Estrai la data in formato YYYY-MM-DD supportando sia IT che ISO
       let dateFormatted = new Date().toISOString().split('T')[0];
-      if (matchDate) {
-        dateFormatted = `${matchDate[3]}-${matchDate[1]}-${matchDate[2]}`;
+      
+      const matchISO = startDateStr.match(/(\d{4})-(\d{2})-(\d{2})/); // Es. 2026-10-24
+      const matchIT = startDateStr.match(/(\d{2})\/(\d{2})\/(\d{4})/); // Es. 24/10/2026
+
+      if (matchISO) {
+        dateFormatted = `${matchISO[1]}-${matchISO[2]}-${matchISO[3]}`;
+      } else if (matchIT) {
+        // Formato IT: matchIT[1]=Giorno, matchIT[2]=Mese, matchIT[3]=Anno
+        dateFormatted = `${matchIT[3]}-${matchIT[2]}-${matchIT[1]}`;
       }
 
       // Determina se è verifica o compito in base alle note

@@ -208,6 +208,7 @@ function showScreen(name) {
         // Salva su Supabase e aggiorna la UI
         saveData();
         render();
+        if (typeof renderAgenda === 'function') renderAgenda();
         
         alert(`Importati con successo ${newEvents.length} eventi!`);
       } else {
