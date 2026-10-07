@@ -191,3 +191,31 @@ function showScreen(name) {
     selectedDay = d;
     renderAgenda();
   }
+
+  function importAgendaCSV(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+  
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const text = e.target.result;
+      const newEvents = parseCSVData(text);
+      
+      if (newEvents && newEvents.length > 0) {
+        // Aggiungi i nuovi eventi all'array esistente
+        DATA.events = DATA.events.concat(newEvents);
+        
+        // Salva su Supabase e aggiorna la UI
+        saveData();
+        render();
+        
+        alert(`Importati con successo ${newEvents.length} eventi!`);
+      } else {
+        alert('Nessun evento valido trovato nel file CSV.');
+      }
+      
+      // Resetta l'input file per permettere di ricaricare lo stesso file se necessario
+      event.target.value = '';
+    };
+    reader.readAsText(file);
+  }
