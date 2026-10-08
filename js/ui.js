@@ -56,7 +56,7 @@ function openGradeModal(prefillSubject) {
           <h2>Aggiungi voto</h2>
           <div class="field">
             <label>Materia</label>
-            <select id="g-subject" size="11">${options}</select>
+            <select id="g-subject" size="4">${options}</select>
           </div>
           <div class="field">
             <label>Voto</label>
