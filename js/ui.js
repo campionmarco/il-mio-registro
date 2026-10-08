@@ -197,25 +197,24 @@ function showScreen(name) {
     if (!file) return;
   
     const reader = new FileReader();
-    reader.onload = function(e) {
-      const text = e.target.result;
-      const newEvents = parseCSVData(text);
-      
-      if (newEvents && newEvents.length > 0) {
-        // Aggiungi i nuovi eventi all'array esistente
+    reader.onload = function (e) {
+      const parsed = parseCSVData(e.target.result);
+  
+      const exists = ev => DATA.events.some(x =>
+        x.date === ev.date && x.subject === ev.subject && x.desc === ev.desc);
+      const newEvents = parsed.filter(ev => !exists(ev));
+  
+      if (newEvents.length > 0) {
         DATA.events = DATA.events.concat(newEvents);
-        
-        // Salva su Supabase e aggiorna la UI
+        newEvents.forEach(ev => {
+          if (!DATA.subjects.includes(ev.subject)) DATA.subjects.push(ev.subject);
+        });
         saveData();
         render();
-        if (typeof renderAgenda === 'function') renderAgenda();
-        
-        alert(`Importati con successo ${newEvents.length} eventi!`);
+        alert(`Importati ${newEvents.length} eventi (${parsed.length - newEvents.length} già presenti).`);
       } else {
-        alert('Nessun evento valido trovato nel file CSV.');
+        alert('Nessun evento nuovo trovato nel file CSV.');
       }
-      
-      // Resetta l'input file per permettere di ricaricare lo stesso file se necessario
       event.target.value = '';
     };
     reader.readAsText(file);

@@ -26,52 +26,50 @@ function parseCSVLine(line) {
   return result;
 }
 
+function parseCSVDate(str) {
+  const iso = str.match(/(\d{4})-(\d{2})-(\d{2})/);
+  if (iso) return `${iso[1]}-${iso[2]}-${iso[3]}`;
+
+  const m = str.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  if (!m) return null;
+
+  const a = parseInt(m[1], 10);
+  const b = parseInt(m[2], 10);
+  let day, month;
+  if (a > 12) { day = a; month = b; }        // GG/MM/AAAA
+  else if (b > 12) { month = a; day = b; }   // MM/GG/AAAA
+  else { month = a; day = b; }               // ambiguo: assumo formato ClasseViva (MM/GG)
+
+  return `${m[3]}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+}
+
 function parseCSVData(csvText) {
-  const lines = csvText.split(/\r?\n/).filter(l => l.trim().length > 0);
+  const lines = csvText.replace(/^\uFEFF/, '').split(/\r?\n/).filter(l => l.trim().length > 0);
   if (lines.length <= 1) return [];
-  
-  // Salta l'intestazione
-  const rows = lines.slice(1);
+
   const events = [];
+  lines.slice(1).forEach((line, index) => {
+    const cols = parseCSVLine(line).map(c => c.trim());
+    if (cols.length < 5) return;
 
-  rows.forEach((rowStr, index) => {
-    const cols = parseCSVLine(rowStr);
-    if (cols.length >= 5) {
-      const startDateStr = cols[1]; // es. "09/24/2026, 09:00 AM"
-      const notes = cols[4];        // es. "Homework: page 104-105..."
-      const author = cols[5] || ''; // es. "PIERLORENZI GIULIA"
+    const date = parseCSVDate(cols[1]);
+    if (!date) return;
 
-      // Estrai la data in formato YYYY-MM-DD supportando sia IT che ISO
-      let dateFormatted = new Date().toISOString().split('T')[0];
-      
-      const matchISO = startDateStr.match(/(\d{4})-(\d{2})-(\d{2})/); // Es. 2026-10-24
-      const matchIT = startDateStr.match(/(\d{2})\/(\d{2})\/(\d{4})/); // Es. 24/10/2026
+    const notes = cols[4];
+    const author = cols[5] || '';
+    const subject = cols[7] || 'Altro';
 
-      if (matchISO) {
-        dateFormatted = `${matchISO[1]}-${matchISO[2]}-${matchISO[3]}`;
-      } else if (matchIT) {
-        // Formato IT: matchIT[1]=Giorno, matchIT[2]=Mese, matchIT[3]=Anno
-        dateFormatted = `${matchIT[3]}-${matchIT[2]}-${matchIT[1]}`;
-      }
+    const n = notes.toLowerCase();
+    const isVerifica = ['verifica', 'test', 'interrogazione', 'prova', 'compito in classe']
+      .some(k => n.includes(k));
 
-      // Determina se è verifica o compito in base alle note
-      const noteLower = notes.toLowerCase();
-      const isVerifica = noteLower.includes('verifica') || 
-                         noteLower.includes('test') || 
-                         noteLower.includes('interrogazione') || 
-                         noteLower.includes('prova') ||
-                         noteLower.includes('compito in classe');
-      
-      const tipo = isVerifica ? 'verifica' : 'compito';
-
-      events.push({
-        id: 'ev_csv_' + Date.now() + '_' + index,
-        titolo: notes,
-        tipo: tipo, // 'verifica' (rosso) o 'compito' (verde)
-        data: dateFormatted,
-        note: `Docente: ${author}`
-      });
-    }
+    events.push({
+      id: Date.now() + index,
+      type: isVerifica ? 'verifica' : 'compito',
+      subject,
+      date,
+      desc: author ? `${notes} (${author})` : notes
+    });
   });
 
   return events;
