@@ -246,12 +246,22 @@ canvas {
 
 /* ===== MODALE ===== */
 @keyframes overlay-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes modal-up {
-  from { transform: translateY(40px); opacity: 0; }
-  to { transform: none; opacity: 1; }
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
 }
 
 .modal-overlay {
@@ -429,7 +439,11 @@ canvas {
   transform: scale(0.97);
 }
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    var(--accent-dark) 100%
+  );
   color: #fff;
   box-shadow: 0 4px 14px rgba(230, 72, 58, 0.3);
 }
@@ -551,7 +565,7 @@ canvas {
   margin-bottom: 8px;
   background-color: var(--bg-card);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .vote-value {
@@ -591,7 +605,6 @@ canvas {
 .delete-btn:hover {
   background-color: #ff1a1a;
 }
-
 
 .sim-box {
   background: var(--card2);
@@ -636,4 +649,33 @@ canvas {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+/* Bottone elimina (X) */
+.del {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s,
+    transform 0.1s;
+}
+.del:hover {
+  background: rgba(230, 72, 58, 0.15);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.del:active {
+  transform: scale(0.9);
 }
