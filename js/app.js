@@ -2,7 +2,7 @@
 function render() {
   // Ottiene lo schermo attivo selezionando l'elemento con la classe 'screen.active' e prendendo l'id di questo elemento.
   const active = document.querySelector(".screen.active").id;
-  
+
   // Chiamate a funzioni di rendering basate sullo schermo attivo.
   if (active === "screen-home") renderHome();
   if (active === "screen-voti") renderVoti();
@@ -89,13 +89,13 @@ function renderVoti() {
   // Ottiene il periodo attivo e filtra i voti di quel periodo.
   const period = document.querySelector("#period-chips .chip.active").dataset.p;
   const grades = gradesForPeriod(period);
-  
+
   // Raggruppa i voti per materia.
   const bySubject = {};
   grades.forEach((g) => {
     (bySubject[g.subject] = bySubject[g.subject] || []).push(g);
   });
-  
+
   // Ordina le materie alfabeticamente e le visualizza.
   const subjects = Object.keys(bySubject).sort();
   document.getElementById("subj-list").innerHTML = subjects.length
@@ -117,7 +117,10 @@ function renderVoti() {
 function renderSubject() {
   // Se non è impostata la materia attiva, esce dalla funzione.
   if (!currentSubject) return;
-  
+
+  // Filtra i voti per la materia corrente
+  const all = DATA.grades.filter((g) => g.subject === currentSubject);
+
   // Imposta il titolo della materia e calcola la media per tipo di voto.
   document.getElementById("subj-title").textContent = currentSubject;
   const sorted = [...all].sort((a, b) => new Date(a.date) - new Date(b.date));
