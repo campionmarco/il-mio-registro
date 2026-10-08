@@ -53,44 +53,44 @@ function openGradeModal(prefillSubject) {
     )
     .join("");
   openModalHTML(`
-        <h2>Aggiungi voto</h2>
-        <div class="field">
-          <label>Materia</label>
-          <select id="g-subject">${options}</select>
-        </div>
-        <div class="field">
-          <label>Voto</label>
-          <input type="number" id="g-value" step="0.25" placeholder="Es. 7.5">
-        </div>
-        <div class="field">
-          <label>Tipo</label>
-          <div class="type-row">
-            <div class="type-btn active" data-t="Orale">Orale</div>
-            <div class="type-btn" data-t="Scritto">Scritto</div>
-            <div class="type-btn" data-t="Pratico">Pratico</div>
+          <h2>Aggiungi voto</h2>
+          <div class="field">
+            <label>Materia</label>
+            <select id="g-subject" size="11">${options}</select>
           </div>
-        </div>
-        <div class="field">
-          <label>Periodo</label>
-          <div class="type-row">
-            <div class="type-btn active" data-q="q1">1° periodo</div>
-            <div class="type-btn" data-q="q2">2° periodo</div>
+          <div class="field">
+            <label>Voto</label>
+            <input type="number" id="g-value" step="0.25" placeholder="Es. 7.5">
           </div>
-        </div>
-        <div class="field">
-          <label>Data</label>
-          <input type="date" id="g-date" value="${today}">
-        </div>
-        <div class="field">
-          <label>Note (opzionale)</label>
-          <input type="text" id="g-note" placeholder="Es. Verifica su Pitagora">
-        </div>
-        <div id="g-error" style="color:var(--red); font-size:13px; display:none; margin-bottom:8px;"></div>
-        <div class="btn-row">
-          <button class="btn btn-secondary" onclick="closeModal()">Annulla</button>
-          <button class="btn btn-primary" onclick="saveGrade()">Salva</button>
-        </div>
-      `);
+          <div class="field">
+            <label>Tipo</label>
+            <div class="type-row">
+              <div class="type-btn active" data-t="Orale">Orale</div>
+              <div class="type-btn" data-t="Scritto">Scritto</div>
+              <div class="type-btn" data-t="Pratico">Pratico</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Periodo</label>
+            <div class="type-row">
+              <div class="type-btn active" data-q="q1">1° periodo</div>
+              <div class="type-btn" data-q="q2">2° periodo</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Data</label>
+            <input type="date" id="g-date" value="${today}">
+          </div>
+          <div class="field">
+            <label>Note (opzionale)</label>
+            <input type="text" id="g-note" placeholder="Es. Verifica su Pitagora">
+          </div>
+          <div id="g-error" style="color:var(--red); font-size:13px; display:none; margin-bottom:8px;"></div>
+          <div class="btn-row">
+            <button class="btn btn-secondary" onclick="closeModal()">Annulla</button>
+            <button class="btn btn-primary" onclick="saveGrade()">Salva</button>
+          </div>
+        `);
   document.querySelectorAll("[data-t]").forEach(
     (b) =>
       (b.onclick = () => {
