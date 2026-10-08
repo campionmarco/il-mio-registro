@@ -432,7 +432,7 @@ canvas {
   background: rgba(230, 72, 58, 0.15);
   border-left: 3px solid var(--red);
 }
-.event-item .del {
+.event-item {
   background: none;
   border: none;
   color: var(--text-dim);
@@ -440,6 +440,56 @@ canvas {
   cursor: pointer;
   flex-shrink: 0;
 }
+
+.vote-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 8px;
+  background-color: var(--bg-card);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.vote-value {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.vote-date {
+  font-size: 0.9em;
+  color: var(--text-secondary);
+}
+
+.vote-type {
+  font-size: 0.8em;
+  background-color: var(--accent);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #ff1a1a;
+}
+
 
 .sim-box {
   background: var(--card2);
