@@ -120,7 +120,7 @@ function renderSubject() {
   
   // Imposta il titolo della materia e calcola la media per tipo di voto.
   document.getElementById("subj-title").textContent = currentSubject;
-  const all = DATA.grades.filter((g) => g.subject === currentSubject);
+  const sorted = [...all].sort((a, b) => new Date(a.date) - new Date(b.date));
   const byType = (t) => all.filter((g) => g.type === t);
   const scritto = avg(byType("Scritto")),
     orale = avg(byType("Orale")),
