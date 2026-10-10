@@ -1,6 +1,3 @@
-# Supabase credentials (non committare in repo pubblico)
-js/config.js
-
 # OS/Editor files
 .DS_Store
 Thumbs.db
