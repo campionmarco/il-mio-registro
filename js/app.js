@@ -90,6 +90,17 @@ function renderVoti() {
   const period = document.querySelector("#period-chips .chip.active").dataset.p;
   const grades = gradesForPeriod(period);
 
+  // Mostra/nasconde i grafici in base al periodo selezionato
+  document.getElementById("voti-chart-all").style.display =
+    period === "all" ? "block" : "none";
+  document.getElementById("voti-chart-q1").style.display =
+    period === "q1" ? "block" : "none";
+  document.getElementById("voti-chart-q2").style.display =
+    period === "q2" ? "block" : "none";
+
+  // Renderizza i 3 grafici (uno per periodo)
+  renderVotiCharts();
+
   // Raggruppa i voti per materia.
   const bySubject = {};
   grades.forEach((g) => {
@@ -111,6 +122,27 @@ function renderVoti() {
         })
         .join("")
     : '<div class="empty">Nessun voto in questo periodo.<br>Tocca + per aggiungerne uno.</div>';
+}
+
+// Renderizza i 3 grafici per la sezione Voti (uno per ogni periodo)
+function renderVotiCharts() {
+  const periods = ["all", "q1", "q2"];
+  periods.forEach((p) => {
+    const grades = gradesForPeriod(p);
+    const sorted = [...grades].sort(
+      (a, b) => new Date(a.date) - new Date(b.date),
+    );
+    const labels = sorted.map((g) =>
+      new Date(g.date).toLocaleDateString("it-IT", {
+        day: "2-digit",
+        month: "2-digit",
+      }),
+    );
+    const data = sorted.map((g) => g.value);
+    const canvasId =
+      p === "all" ? "votiChartAll" : p === "q1" ? "votiChartQ1" : "votiChartQ2";
+    lineChart(canvasId, labels, data);
+  });
 }
 
 // Funzione per il rendering dello schermo materia
