@@ -1,5 +1,7 @@
 # Il Mio Registro — Registro Personale Scolastico
 
+## Link 
+
 **Il Mio Registro** è una Single Page Application (SPA) web leggera e moderna, pensata per studenti. Permette di tenere traccia del proprio rendimento scolastico, calcolare le medie automatiche per periodo e per materia, simulare l'impatto di nuovi voti e gestire un'agenda con compiti e verifiche.
 
 I dati vengono sincronizzati in remoto tramite l'integrazione con **Supabase (REST API)**, consentendo l'accesso continuo al proprio registro da qualsiasi dispositivo.

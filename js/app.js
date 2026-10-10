@@ -366,4 +366,4 @@ document.getElementById("period-chips").addEventListener("click", (e) => {
 });
 
 // Avvio
-loadData();
+initAuth();
