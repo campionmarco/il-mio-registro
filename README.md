@@ -54,19 +54,19 @@ Lo scopo principale dell'applicazione è offrire uno strumento semplice, veloce 
 - **Filtro per Periodo**: Selezione rapida tra Generale, 1° periodo e 2° periodo.
 - **Grafici andamento per periodo**: Nella sezione Voti, 3 grafici a linee identici a quello della Home mostrano l'andamento temporale dei voti per "Generale", "1° periodo" e "2° periodo", visibili a seconda del chip selezionato.
 - **Elenco Materie**: Lista automatica delle materie con badge circolare colorato in base alla media:
-  - = Verde: Media ≥ 6.0
-  - = Giallo: Media tra 5.0 e 5.9
-  - = Rosso: Media < 5.0
+  - Verde: Media ≥ 6.0
+  - Giallo: Media tra 5.0 e 5.9
+  - Rosso: Media < 5.0
 - **Dettaglio per Tipologia**: Calcolo separato della media per valutazioni Scritte, Orali e Pratiche.
-- **= Simulatore di Voto**: Inserendo un voto ipotetico, il sistema calcola istantaneamente la nuova media della materia e la differenza (↑ / ↓) rispetto a quella attuale, senza salvare il dato nel DB.
+- **Simulatore di Voto**: Inserendo un voto ipotetico, il sistema calcola istantaneamente la nuova media della materia e la differenza (↑ / ↓) rispetto a quella attuale, senza salvare il dato nel DB.
 - **Gestione Voti**: Storico completo con possibilità di eliminazione singola di un voto.
 
 ### 3. Agenda Scolastica
 
 - **Calendario Mensile**: Griglia interattiva con navigazione tra i mesi.
 - **Indicatori Visivi (Dots)**:
-  - = Pallino Verde: Compiti a casa scritti/orali.
-  - = Pallino Rosso: Verifiche o test.
+  - Pallino Verde: Compiti a casa scritti/orali.
+  - Pallino Rosso: Verifiche o test.
 - **Gestione Eventi per Giorno**: Selezione di una data per visualizzare o rimuovere gli eventi programmati.
 - **Import CSV**: Pulsante per importare eventi da file CSV esportati da ClasseViva.
 
