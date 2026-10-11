@@ -202,4 +202,10 @@ Se il risultato è `[]`, senza login nessuno può leggere i tuoi dati. Se vedi d
 
 ---
 
+## Licenza
+
+Distribuito con licenza MIT. Vedi il file [LICENSE](LICENSE).
+
+---
+
 Sviluppato da **Marco Campion** · [Marco Digital Solutions](https://marcodigitalsolutions.carrd.co/)
