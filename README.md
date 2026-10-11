@@ -13,7 +13,7 @@ I dati vengono sincronizzati in remoto tramite l'integrazione con **Supabase (RE
 Il codice è organizzato in un'architettura modulare basata su Vanilla JavaScript, HTML5 e CSS3, senza la necessità di framework o build-tool complessi:
 
 ```text
-REGISTRO-PERSONALE/
+IL-MIO-REGISTRO/
 ├── css/
 │   └── style.css           # Design system, variabili CSS (Dark Theme), layout e modali
 ├── js/
