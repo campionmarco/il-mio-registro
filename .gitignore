@@ -11,3 +11,8 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# Segreti e dipendenze
+.env
+.env.*
+node_modules/
