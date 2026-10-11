@@ -35,7 +35,7 @@ REGISTRO-PERSONALE/
 
 Lo scopo principale dell'applicazione è offrire uno strumento semplice, veloce e privo di distrazioni per:
 
-- **Monitorare la media voto**: Avere sempre chiara la propria situazione scolastica complessiva e suddivisa per trimestre/pentamestre.
+- **Monitorare la media voto**: Avere sempre chiara la propria situazione scolastica complessiva e suddivisa per primo/secondo periodo.
 - **Pianificare lo studio**: Organizzare verifiche e compiti a casa con un calendario visivo chiaro.
 - **Simulare scenari di voto**: Comprendere preventivamente quale voto è necessario prendere per alzare o mantenere la media di una materia.
 - **Visualizzare i progressi**: Analizzare il trend dei voti e la loro distribuzione statistica tramite grafici dinamici.
@@ -44,7 +44,7 @@ Lo scopo principale dell'applicazione è offrire uno strumento semplice, veloce 
 
 ## Spiegazione Dettagliata delle Funzionalità
 
-### 1. < Home Screen (Dashboard)
+### 1. Home Screen (Dashboard)
 
 - **Saluto dinamico e Data**: Mostra un messaggio di saluto personalizzato in base all'ora (Buongiorno / Buon pomeriggio / Buonasera) e la data attuale.
 - **Grafico Trend**: Grafico a linee dell'andamento temporale degli ultimi 10 voti inseriti.
@@ -100,11 +100,11 @@ L'applicazione comunica con Supabase senza librerie pesanti, utilizzando la Fetc
 
 Ogni persona usa **il proprio database e il proprio login**: i dati di ciascuno restano separati e privati. Tempo necessario: circa 20 minuti. Costo: 0€ (piani gratuiti di GitHub, Supabase e Vercel).
 
-> **Importante:** il file `js/config.js` di questo repository contiene l'URL e la chiave del *mio* progetto Supabase. Al passo 5 devi sostituirli con i tuoi. Non usare i miei: non funzionerebbero e non avresti accesso ai tuoi dati.
+> **Importante:** il file `js/config.js` di questo repository contiene l'URL e la chiave del *mio* progetto Supabase. Al passo 5 devi sostituirli con i tuoi. Non usare i miei: non funzionerebbero e non avresti accesso ai tuoi dati (e neanche ai miei).
 
 ### 1. Copia il progetto
 
-1. Clicca su **Fork** in alto a destra in questa pagina (oppure **Use this template** se disponibile).
+1. Clicca su **Use this template**.
 2. Il progetto viene copiato nel tuo account GitHub.
 
 ### 2. Crea il database su Supabase

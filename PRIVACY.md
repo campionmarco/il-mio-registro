@@ -1,6 +1,6 @@
 # Privacy Policy — Il Mio Registro
 
-**Ultimo aggiornamento:** 2026-10-10
+**Ultimo aggiornamento:** 11-10-2026
 
 ---
 
@@ -16,7 +16,7 @@ L'app memorizza **solo** i dati che inserisci volontariamente:
 
 - **Voti**: materia, valore (1–10), tipo (Orale/Scritto/Pratico), periodo (1°/2°), data, note opzionali
 - **Eventi/Agenda**: tipo (Compito/Verifica), materia, data, descrizione opzionale
-- **Materie**: lista derivata automaticamente da voti ed eventi
+- **Materie**: lista fissa dichiarata in "ui.js"
 
 **Nessun dato personale identificativo** (nome, email, IP, posizione, contatti) viene richiesto o salvato dall'app.
 
