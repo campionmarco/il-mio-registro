@@ -1,10 +1,38 @@
 # Il Mio Registro — Registro Personale Scolastico
 
-## Link 
-
 **Il Mio Registro** è una Single Page Application (SPA) web leggera e moderna, pensata per studenti. Permette di tenere traccia del proprio rendimento scolastico, calcolare le medie automatiche per periodo e per materia, simulare l'impatto di nuovi voti e gestire un'agenda con compiti e verifiche.
 
 I dati vengono sincronizzati in remoto tramite l'integrazione con **Supabase (REST API)**, consentendo l'accesso continuo al proprio registro da qualsiasi dispositivo.
+
+---
+
+## Foto
+
+<table>
+  <tr>
+    <td align="center">
+      <img width="200" alt="Screenshot 4" src="https://github.com/user-attachments/assets/b0fd9061-edf9-4da4-8390-1be39276ed11" />
+    </td>
+    <td align="center">
+      <img width="200" alt="Screenshot 6" src="https://github.com/user-attachments/assets/a102dc7d-79e9-455c-a454-0d453a05d415" />
+    </td>
+    <td align="center">
+      <img width="200" alt="Screenshot 1" src="https://github.com/user-attachments/assets/85dd886c-cdcc-415e-8d44-e09eb4b13b3c" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img width="200" alt="Screenshot 2" src="https://github.com/user-attachments/assets/06288b18-1034-428a-8d69-9c54f1dae76e" />
+    </td>
+    <td align="center">
+      <img width="200" alt="Screenshot 3" src="https://github.com/user-attachments/assets/a0a5c430-16ed-4192-99b6-fa740786c6a2" />
+    </td>
+    <td align="center">
+      <img width="200" alt="Screenshot 5" src="https://github.com/user-attachments/assets/4b89df42-965f-4a05-8154-9916150ca151" />
+    </td>
+  </tr>
+</table>
+
 
 ---
 
