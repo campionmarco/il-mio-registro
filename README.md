@@ -49,7 +49,6 @@ IL-MIO-REGISTRO/
 │   ├── app.js              # Logica di render per le schermate (Home, Voti, Materia, Agenda, Stats)
 │   ├── charts.js           # Gestione e configurazione dei grafici con Chart.js
 │   ├── config.js           # Stato globale (DATA) e credenziali Supabase (da sostituire con le proprie)
-│   ├── config.example.js   # Template di configurazione — copiare in config.js e inserire le proprie chiavi
 │   ├── import_csv.js       # Parser CSV per importazione agenda da ClasseViva
 │   └── ui.js               # Gestione navigazione SPA, modali interattivi e simulatore voto
 ├── index.html              # Struttura Single Page Application e modali
@@ -195,7 +194,7 @@ git push
 ### 6. Pubblica su Vercel
 
 1. Vai su [vercel.com](https://vercel.com) e accedi con GitHub.
-2. **Add New > Project**, scegli il tuo fork del repository.
+2. **Add New > Project**, scegli il tuo repository.
 3. Lascia le impostazioni di default (nessun build command) e clicca **Deploy**.
 4. Dopo circa un minuto ottieni un indirizzo tipo `il-tuo-registro.vercel.app`.
 
