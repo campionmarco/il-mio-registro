@@ -112,6 +112,7 @@ Lo scopo principale dell'applicazione è offrire uno strumento semplice, veloce 
   - Nelle altre sezioni: apre il modulo "Aggiungi voto".
 - **Supporto Touch/Mobile**: Layout responsive nativo per smartphone, con navbar fissa e modali a scomparsa.
 
+### 6. Login con Credenziali Personali e RLS Database (Supabase)
 ---
 
 ## Sincronizzazione Dati (Supabase REST)
