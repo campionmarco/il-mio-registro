@@ -236,4 +236,4 @@ Distribuito con licenza MIT. Vedi il file [LICENSE](LICENSE).
 
 ---
 
-Sviluppato da **Marco Campion** · [Marco Digital Solutions](https://marcodigitalsolutions.carrd.co/)
+Sviluppato da **Marco Campion**
