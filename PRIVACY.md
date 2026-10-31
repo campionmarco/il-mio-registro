@@ -31,6 +31,7 @@ I dati vengono salvati **esclusivamente** sul tuo progetto **Supabase** (databas
 - Nessun backup automatico su cloud esterni (Google Drive, iCloud, ecc.)
 
 ---
+
 ## 4. Finalità del trattamento
 
 I dati servono **solo** per:
@@ -61,7 +62,7 @@ Puoi esercitare in autonomia:
 
 - **Accesso**: apri l'app → vedi tutti i tuoi dati
 - **Rettifica**: modifica/elimina singoli voti o eventi dall'interfaccia
-- **Cancellazione (Diritto all'oblio)**: 
+- **Cancellazione (Diritto all'oblio)**:
   - Da UI: elimina ogni voto/evento uno a uno
   - Da Supabase Dashboard: `TRUNCATE registro;` o `DELETE FROM registro WHERE id=eq.1;`
   - In locale: cancella `localStorage`/`sessionStorage` del browser
@@ -73,6 +74,7 @@ Puoi esercitare in autonomia:
 ## 8. Cookie e tracciamento
 
 **Zero cookie.** L'app non usa:
+
 - Cookie tecnici / di sessione
 - Cookie analytics (Google Analytics, Matomo, ecc.)
 - Pixel / fingerprinting
@@ -82,10 +84,10 @@ Puoi esercitare in autonomia:
 
 ## 9. Servizi terzi
 
-| Servizio | Ruolo | Dati ricevuti |
-|----------|-------|---------------|
-| **Supabase** | Database + Auth (opzionale) | Solo i JSON che invii via REST (voti, eventi) |
-| **Chart.js (CDN)** | Libreria grafici | Nessuno (gira lato client, nessun beacon) |
+| Servizio           | Ruolo                       | Dati ricevuti                                 |
+| ------------------ | --------------------------- | --------------------------------------------- |
+| **Supabase**       | Database + Auth (opzionale) | Solo i JSON che invii via REST (voti, eventi) |
+| **Chart.js (CDN)** | Libreria grafici            | Nessuno (gira lato client, nessun beacon)     |
 
 Nessun altro servizio terzo è coinvolto.
 
@@ -117,4 +119,4 @@ Per domande su questa policy o sui tuoi dati: apri una **Issue su GitHub** del r
 
 ---
 
-*Questa policy copre l'app "Il Mio Registro" come distribuita nel repository pubblico. Se fai un fork e la modifichi, adatta la policy di conseguenza.*
+_Questa policy copre l'app "Il Mio Registro" come distribuita nel repository pubblico. Se fai un fork e la modifichi, adatta la policy di conseguenza._
