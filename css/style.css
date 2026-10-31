@@ -684,3 +684,79 @@ canvas {
 .login-overlay.active { display: flex; }
 .login-box { width: 100%; max-width: 340px; }
 .login-box h1 { margin-bottom: 20px; }
+
+/* ===== SIMULATORE (fino a 5 voti) ===== */
+.sim-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.sim-row .field {
+  flex: 1;
+  margin-bottom: 0;
+}
+.sim-add {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+/* ===== OBIETTIVO MEDIA ===== */
+.target-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.target-row .field {
+  flex: 1;
+  margin-bottom: 0;
+}
+.target-btn {
+  flex: 0 0 auto;
+  padding: 13px 14px;
+}
+.form-error {
+  color: var(--red);
+  font-size: 13px;
+  margin-top: 8px;
+}
+.target-hint {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 12px;
+}
+.target-head {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 14px 0 4px;
+}
+.target-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.target-line:last-child {
+  border-bottom: none;
+}
+.target-line .val {
+  font-weight: 600;
+  text-align: right;
+}
+.t-good {
+  color: var(--green);
+}
+.t-warn {
+  color: var(--amber);
+}
+.t-bad {
+  color: var(--red);
+}
+
+/* ===== ESCI ===== */
+.logout-btn {
+  width: 100%;
+  margin-top: 8px;
+}

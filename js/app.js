@@ -114,9 +114,10 @@ function renderVoti() {
         .map((s) => {
           const a = avg(bySubject[s]);
           const col = GRADE_COLOR(a);
+          const t = getTarget(s);
           return `<div class="subj-item" onclick="openSubject('${s.replace(/'/g, "\\'")}')">
         <div class="circle" style="border-color:${col}; color:${col};">${fmt(a)}</div>
-        <div><div class="subj-name">${s}</div><div class="subj-sub">${bySubject[s].length} voti</div></div>
+        <div><div class="subj-name">${s}</div><div class="subj-sub">${bySubject[s].length} voti${t !== null ? " · obiettivo " + fmt(t) : ""}</div></div>
         <div class="chevron">&#8250;</div>
       </div>`;
         })
@@ -181,9 +182,9 @@ function renderSubject() {
     sorted.map((g) => g.value),
   );
 
-  // Nasconde il risultato della simulazione.
-  document.getElementById("sim-input").value = "";
-  document.getElementById("sim-result").style.display = "none";
+  // Azzera la simulazione (un solo campo vuoto) e aggiorna l'obiettivo.
+  resetSim();
+  renderTarget();
 
   // Visualizza i voti per la materia attiva.
   document.getElementById("subj-grades").innerHTML = sorted.length
@@ -205,6 +206,54 @@ function renderSubject() {
         )
         .join("")
     : '<div class="empty">Nessun voto per questa materia</div>';
+}
+
+// Obiettivo di media della materia aperta: campo, stato e voti necessari
+function renderTarget() {
+  const grades = DATA.grades.filter((g) => g.subject === currentSubject);
+  const target = getTarget(currentSubject);
+  const out = document.getElementById("target-result");
+  document.getElementById("target-error").hidden = true;
+  document.getElementById("target-input").value =
+    target !== null ? target : "";
+  document.getElementById("target-clear").hidden = target === null;
+
+  if (target === null) {
+    out.innerHTML =
+      '<div class="target-hint">Imposta la media che vuoi avere in questa materia: ti dico che voto serve.</div>';
+    return;
+  }
+
+  const cur = avg(grades);
+  const above = cur !== null && cur >= target - EPS;
+  const head =
+    cur === null
+      ? '<div class="target-head">Nessun voto in questa materia</div>'
+      : `<div class="target-head ${above ? "t-good" : "t-bad"}">${above ? "Sei sopra" : "Sei sotto"} l'obiettivo (${fmt(cur)} su ${fmt(target)})</div>`;
+
+  const lines = targetAdvice(grades, target)
+    .map((a) => {
+      const label =
+        a.k === 1 ? "Al prossimo voto" : `Nei prossimi ${a.k} voti (tutti uguali)`;
+      let text, cls;
+      if (a.status === "any") {
+        text = "qualsiasi voto";
+        cls = "t-good";
+      } else if (a.status === "impossible") {
+        text = "non raggiungibile";
+        cls = "t-bad";
+      } else if (above) {
+        text = `almeno ${fmt(a.value)}`;
+        cls = "t-good";
+      } else {
+        text = `serve ${fmt(a.value)}`;
+        cls = "t-warn";
+      }
+      return `<div class="target-line"><span>${label}</span><span class="val ${cls}">${text}</span></div>`;
+    })
+    .join("");
+
+  out.innerHTML = head + lines;
 }
 
 // Funzione per il rendering dello schermo agenda

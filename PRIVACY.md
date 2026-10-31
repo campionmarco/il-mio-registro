@@ -1,6 +1,6 @@
 # Privacy Policy — Il Mio Registro
 
-**Ultimo aggiornamento:** 11-10-2026
+**Ultimo aggiornamento:** 31-10-2026
 
 ---
 

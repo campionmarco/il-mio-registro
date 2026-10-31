@@ -107,18 +107,45 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-title">Simula un voto</div>
-        <div class="field" style="margin-bottom: 8px">
-          <input
-            type="number"
-            id="sim-input"
-            step="0.25"
-            placeholder="Es. 7.5"
-            oninput="simulate()"
-          />
+        <div class="card-title">Obiettivo media</div>
+        <div class="target-row">
+          <div class="field">
+            <input
+              type="number"
+              id="target-input"
+              step="0.25"
+              min="1"
+              max="10"
+              placeholder="Es. 8"
+            />
+          </div>
+          <button class="btn btn-primary target-btn" onclick="saveTarget()">
+            Imposta
+          </button>
+          <button
+            class="btn btn-secondary target-btn"
+            id="target-clear"
+            onclick="clearTarget()"
+            hidden
+          >
+            Rimuovi
+          </button>
         </div>
+        <div class="form-error" id="target-error" hidden></div>
+        <div id="target-result"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Simula fino a 5 voti</div>
+        <div id="sim-inputs"></div>
+        <button
+          class="btn btn-secondary sim-add"
+          id="sim-add"
+          onclick="addSimInput()"
+        >
+          + Aggiungi voto
+        </button>
         <div class="sim-box" id="sim-result" style="display: none">
-          <div class="cur">Nuova media materia</div>
+          <div class="cur" id="sim-label">Nuova media materia</div>
           <div class="new-avg" id="sim-avg">-</div>
           <div id="sim-diff"></div>
         </div>
@@ -224,10 +251,9 @@
           </div>
         </div>
       </div>
+      <button class="btn btn-secondary logout-btn" onclick="logout()">Esci</button>
     </div>
 
-    <button class="btn btn-secondary" style="width:100%; margin-top:8px" onclick="logout()">Esci</button>
-    
     <!-- FAB & NAVBAR -->
     <button class="fab" id="fab" onclick="openFab()">+</button>
 

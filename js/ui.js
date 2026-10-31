@@ -212,18 +212,67 @@ function openSubject(name) {
   showScreen("subject");
 }
 
+// ===== Simulatore: fino a 5 voti =====
+const MAX_SIM_GRADES = 5;
+
+function simRowHTML() {
+  return `
+    <div class="sim-row">
+      <div class="field">
+        <input type="number" class="sim-input" step="0.25" min="1" max="10" placeholder="Es. 7.5" oninput="simulate()">
+      </div>
+      <button class="del" onclick="removeSimInput(this)" aria-label="Rimuovi voto">&#10005;</button>
+    </div>`;
+}
+
+function updateSimAdd() {
+  const n = document.querySelectorAll("#sim-inputs .sim-row").length;
+  document.getElementById("sim-add").hidden = n >= MAX_SIM_GRADES;
+}
+
+// Riporta il simulatore a un solo campo vuoto
+function resetSim() {
+  document.getElementById("sim-inputs").innerHTML = simRowHTML();
+  document.getElementById("sim-result").style.display = "none";
+  updateSimAdd();
+}
+
+function addSimInput() {
+  const box = document.getElementById("sim-inputs");
+  if (box.querySelectorAll(".sim-row").length >= MAX_SIM_GRADES) return;
+  box.insertAdjacentHTML("beforeend", simRowHTML());
+  updateSimAdd();
+  box.lastElementChild.querySelector("input").focus();
+}
+
+function removeSimInput(btn) {
+  const box = document.getElementById("sim-inputs");
+  const row = btn.closest(".sim-row");
+  if (box.querySelectorAll(".sim-row").length > 1) row.remove();
+  else row.querySelector("input").value = "";
+  updateSimAdd();
+  simulate();
+}
+
 function simulate() {
-  const val = parseFloat(document.getElementById("sim-input").value);
+  const vals = [...document.querySelectorAll("#sim-inputs .sim-input")]
+    .map((i) => parseFloat(i.value))
+    .filter((v) => !isNaN(v) && v >= 1 && v <= 10);
   const box = document.getElementById("sim-result");
-  if (isNaN(val) || val < 1 || val > 10) {
+  if (!vals.length) {
     box.style.display = "none";
     return;
   }
   const all = DATA.grades.filter((g) => g.subject === currentSubject);
   const curAvg = avg(all);
-  const newAvg =
-    (all.reduce((a, b) => a + b.value, 0) + val) / (all.length + 1);
+  const total =
+    all.reduce((a, b) => a + b.value, 0) + vals.reduce((a, b) => a + b, 0);
+  const newAvg = total / (all.length + vals.length);
   box.style.display = "block";
+  document.getElementById("sim-label").textContent =
+    vals.length > 1
+      ? `Nuova media materia con ${vals.length} voti`
+      : "Nuova media materia";
   document.getElementById("sim-avg").textContent = fmt(newAvg);
   document.getElementById("sim-avg").style.color = GRADE_COLOR(newAvg);
   const diff = curAvg === null ? newAvg : newAvg - curAvg;
@@ -238,6 +287,27 @@ function simulate() {
       " rispetto alla media attuale";
     el.className = diff >= 0 ? "diff-up" : "diff-down";
   }
+}
+
+// ===== Obiettivo di media per materia =====
+function saveTarget() {
+  const value = parseFloat(document.getElementById("target-input").value);
+  const err = document.getElementById("target-error");
+  if (isNaN(value) || value < 1 || value > 10) {
+    err.textContent = "Inserisci un obiettivo tra 1 e 10.";
+    err.hidden = false;
+    return;
+  }
+  err.hidden = true;
+  setTarget(currentSubject, value);
+  saveData();
+  renderTarget();
+}
+
+function clearTarget() {
+  setTarget(currentSubject, null);
+  saveData();
+  renderTarget();
 }
 
 function changeMonth(delta) {
